@@ -1,20 +1,20 @@
-este proyecto esta creado con angular(frontend) y laravel(backend), la base de datos mysql.
-con token(JWT),material angular, primeNg.
+Este proyecto está creado con angular(frontend) y Laravel(backend), la base de datos MySQL.
+Con token(JWT), material angular, primeNg.
 
  
-*nombre de la base de datos "prueba".
-*ApisLaravel(backend), son las apis Nota: importante verificar el archivo .env donde esta la conexion de la base de datos.
-*en ApisLaravel en la raiz encontraras una carpeta llamada form, en esa carpeta se encuentra el front en produccion.
-*la url para entra al proyecto seria http://localhost/Apilaravel/form
-*pruebaFront(frontend) es el codigo fuente del frontend,esta creado con angular
-*si quieren pasar el codigo en angular en produccion ejecutar el codigo => 
+*Nombre de la base de datos "prueba".
+*ApisLaravel(backend), son las apis Nota: importante verificar el archivo .env donde está la conexión de la base de datos.
+*En ApisLaravel en la raíz encontrarás una carpeta llamada form, en esa carpeta se encuentra el front en producción.
+*La URL para entrar al proyecto es http://localhost/Apilaravel/form
+*pruebaFront(frontend) es el código fuente del frontend, está creado con angular
+*Si quieren pasar el código en angular en producción ejecutar el código => 
 	ng build --aot --output-hashing=all --base-href /ApisLaravel/form/
 
 /*****INSTALACION*****/
 
-1.ejecute xampp o cualquier servidor web local.
-2.crear base de datos llamada prueba, importe el archivo .mysql para crear las tablas.
-3.copie la carpeta ApiLaravel y pegala en htdocs
-4.en el explorador direjese ala direccion http://localhost/ApisLaravel/form
+1.Ejecute xampp o cualquier servidor web local.
+2.Crear base de datos llamada prueba, importe el archivo. MySQL para crear las tablas.
+3.Copie la carpeta ApiLaravel y pégala en htdocs
+4.En el explorador copié la dirección http://localhost/ApisLaravel/form
 5. usuario: master, password:Abc123
 
