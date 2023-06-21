@@ -1,0 +1,107 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Proceso</h1>
+    <mat-grid-list cols="" rowHeight="900px">
+      <mat-grid-tile >
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+                <button pButton pRipple  icon="pi pi-plus" class="p-button-primary" (click)="crear()" ></button>     
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+              <hr>
+                <div class="card" *ngIf="bloqueo">
+                    <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+                </div>
+                <br>
+                <p-table #dt [value]="datos" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"  [tableStyle]="{'min-width': '50rem'}" 
+                [globalFilterFields]="['PRO_ID','PRO_PREFIJO','PRO_NOMBRE']" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"
+                scrollHeight="600px">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="PRO_ID">ID <p-sortIcon field="ID"></p-sortIcon></th>
+                            <th pSortableColumn="PRO_PREFIJO">PREFIJO <p-sortIcon field="PREFIJO"></p-sortIcon></th>
+                            <th pSortableColumn="PRO_NOMBRE">NOMBRE <p-sortIcon field="NOMBRE"></p-sortIcon></th>
+                            <th >ACCION</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                 <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text" (input)="filter($event.target, 'PRO_ID')"  placeholder="ID" class="w-full">
+                                </span>
+                            </th>
+                            <th>
+                                 <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                    <input pInputText type="text" (input)="filter($event.target, 'PRO_PREFIJO')"  placeholder="PREFIJO" class="w-full">
+                                </span>
+                            </th>
+                            <th>
+                                 <span class="p-input-icon-left">
+                                    <i class="pi pi-search"></i>
+                                <input pInputText type="text" (input)="filter($event.target, 'PRO_NOMBRE')"  placeholder="NOMBRE" class="w-full">
+                            </span>
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                    
+                    </ng-template>
+                    <ng-template pTemplate="body" let-info let-ri="rowIndex">
+                        <tr>
+                            <td>
+                                {{info.PRO_ID}}
+                            </td>
+                            <td>
+                                {{info.PRO_PREFIJO}}
+                            </td>
+                            <td>
+                                {{info.PRO_NOMBRE}}
+                            </td>
+                            <td>
+                                <button pButton pRipple  icon="pi pi-file-edit" class="p-button-success" (click)="editar($event,info)" pTooltip="Editar"></button>&nbsp;
+                                <button  pButton pRipple  icon="pi pi-trash" class="p-button-danger" (click)="delete($event,info)" pTooltip="Bloquear"></button>
+                                <p-confirmPopup></p-confirmPopup>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-between">
+                            In total there are {{datos ? datos.length : 0 }} Datos.
+                        </div>
+                    </ng-template>
+                </p-table>
+           
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+</div>
+
+<p-dialog header="{{modal}}" [(visible)]="visible"  [style]="{width: '50vw'}" [modal]="true" [draggable]="false"
+[resizable]="false" [maximizable]="true">
+   
+    <div class="card flex justify-content-center p-3"  >
+        <h4>PREFIJO</h4>
+        <input type="hidden" pInputText  [(ngModel)]="proceso.PRO_ID" />
+        <input type="text" pInputText  [(ngModel)]="proceso.PRO_PREFIJO" [style]="{width: '100%'}"/>
+        <br>
+    </div>
+
+    <div class="card flex justify-content-center p-3" >
+        <h4>NOMBRE</h4>
+        <input type="text" pInputText  [(ngModel)]="proceso.PRO_NOMBRE" [style]="{width: '100%'}"/>
+        <br>
+    </div>
+
+    <hr>
+    <button pButton pRipple class="p-button-primary" (click)="saveUser($event)" *ngIf="modal=='Crear Proceso'">Guardar</button>
+    <button pButton pRipple class="p-button-primary" (click)="updateUser($event)" *ngIf="modal=='Editar Proceso'">Guardar</button>
+</p-dialog>
+
+<p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+  
+  
+
